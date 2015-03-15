@@ -17,7 +17,7 @@
 
     ko.toJSON = function(rootObject, replacer, space) {     // replacer and space are optional
         var plainJavaScriptObject = ko.toJS(rootObject);
-        return ko.utils.stringifyJson(plainJavaScriptObject, replacer, space);
+        return JSON.stringify(plainJavaScriptObject, replacer, space);
     };
 
     function mapJsObjectGraph(rootObject, mapInputCallback, visitedObjects) {

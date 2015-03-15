@@ -1,50 +1,55 @@
-**Knockout** is a JavaScript [MVVM](http://en.wikipedia.org/wiki/Model_View_ViewModel) (a modern variant of MVC) library that makes it easier to create rich, desktop-like user interfaces with JavaScript and HTML. It uses *observers* to make your UI automatically stay in sync with an underlying data model, along with a powerful and extensible set of *declarative bindings* to enable productive development.
 
-##Getting started
+**kor** is a JavaScript library supporting reactive programming. It is actually
+just a tiny subset of the excellent **Knockout** library with all the stuff to
+do with binding to the DOM removed. This is because there are several ways to
+achieve the DOM-binding part (for example, React) but which lack anything as
+mature or helpful as Knockout's reactive programming support.
 
-[![Join the chat at https://gitter.im/knockout/knockout](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/knockout/knockout?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+By cutting Knockout down to its core (or *kor*?) we end up with a library that
+is only 5.2 KB in size (minified+gzipped) and yet supplies the support needed
+for convenient reactive programming.
 
-**Totally new to Knockout?** The most fun place to start is the [online interactive tutorials](http://learn.knockoutjs.com/).
+##Authorship
 
-For more details, see
+Given kor's obvious direct heritage, it would be ridiculous for me to claim
+authorship - I just deleted a bunch of stuff. At the same time the Knockout
+team have not decided to create this subset so they should not be blamed for
+any shortcomings it suffers from.
 
- * Documentation on [the project's website](http://knockoutjs.com/documentation/introduction.html)
- * Online examples at [http://knockoutjs.com/examples/](http://knockoutjs.com/examples/)
+Therefore to give credit and blame where its due, let's say:
 
-##Downloading Knockout
-
-You can [download released versions of Knockout](http://knockoutjs.com/downloads/) from the project's website.
-
-For Node.js developers, Knockout is also available from [npm](https://npmjs.org/) - just run `npm install knockout`.
-
-##Building Knockout from sources
-
-If you prefer to build the library yourself:
-
- 1. **Clone the repo from GitHub**
-
-        git clone https://github.com/knockout/knockout.git
-        cd knockout
-
- 2. **Acquire build dependencies.** Make sure you have [Node.js](http://nodejs.org/) installed on your workstation. This is only needed to _build_ Knockout from sources. Knockout itself has no dependency on Node.js once it is built (it works with any server technology or none). Now run:
-
-        npm install -g grunt-cli
-        npm install
-
-    The first `npm` command sets up the popular [Grunt](http://gruntjs.com/) build tool. You might need to run this command with `sudo` if you're on Linux or Mac OS X, or in an Administrator command prompt on Windows. The second `npm` command fetches the remaining build dependencies.
-
- 3. **Run the build tool**
-
-        grunt
-
-    Now you'll find the built files in `build/output/`.
-
-## Running the tests
-
-If you have [phantomjs](http://phantomjs.org/download.html) installed, then the `grunt` script will automatically run the specification suite and report its results.
-
-Or, if you want to run the specs in a browser (e.g., for debugging), simply open `spec/runner.html` in your browser.
+> Copyright (c) Steven Sanderson, the Knockout.js team, and other contributors
+http://knockoutjs.com/, with parts deleted by Daniel Earwicker
 
 ##License
 
 MIT license - [http://www.opensource.org/licenses/mit-license.php](http://www.opensource.org/licenses/mit-license.php)
+
+##What survived?
+
+The surviving functions work exactly the same as in Knockout. The only
+difference is that when loaded by a script tag in the browser, the root object
+is called `kor` instead of `ko`, to avoid collision with Knockout.
+
+* `kor.observable`
+* `kor.observableArray`
+* `kor.computed` and `kor.pureComputed` (prefer the latter)
+* `kor.extenders` and built-ins such as `throttle`, `rateLimit`
+* `kor.unwrap` and `kor.peekObservable`
+* `kor.toJS`
+
+##Using with Knockout plugins
+
+There are extension libraries that work alongside Knockout, such as
+[Mapping](http://knockoutjs.com/documentation/plugins-mapping.html)
+or my own [knockout.clear](https://github.com/danielearwicker/knockout.clear).
+
+In the browser, if you are just using a `script` tag to import kor, you would
+need to "rename" kor by doing this before you load any extension libraries:
+
+    window.ko = window.kor;
+
+Of course, this is only useful if the extension library is satisfied by the
+subset retained in kor.
+
+(NB. I'm planning to fix knockout.clear so it automatically works with kor).
