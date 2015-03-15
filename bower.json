@@ -1,8 +1,8 @@
 {
-  "name": "knockout",
-  "version": "3.3.0",
-  "homepage": "http://knockoutjs.com/",
-  "description": "Knockout makes it easier to create rich, responsive UIs with JavaScript",
+  "name": "kor",
+  "version": "0.1.0",
+  "homepage": "http://danielearwicker.github.io/kor/",
+  "description": "A tiny subset of Knockout for reactive programming",
   "main": "dist/knockout.js",
   "moduleType": [
     "amd",
@@ -11,7 +11,8 @@
   ],
   "keywords": [
     "knockout",
-    "mvvm",
+    "react",
+    "reactive",
     "mvc",
     "spa"
   ],

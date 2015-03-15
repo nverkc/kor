@@ -33,7 +33,6 @@ require('./arrayEditDetectionBehaviors');
 require('./asyncBehaviors');
 require('./dependentObservableBehaviors');
 require('./pureComputedBehaviors');
-require('./expressionRewritingBehaviors');
 require('./extenderBehaviors');
 require('./mappingHelperBehaviors');
 require('./observableArrayBehaviors');

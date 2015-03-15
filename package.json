@@ -1,10 +1,10 @@
 {
-  "name": "knockout",
-  "description": "Knockout makes it easier to create rich, responsive UIs with JavaScript",
-  "homepage": "http://knockoutjs.com/",
-  "version": "3.3.0",
+  "name": "kor",
+  "description": "A tiny subset of Knockout for reactive programming",
+  "homepage": "http://danielearwicker.github.io/kor/",
+  "version": "0.1.0",
   "license": "MIT",
-  "author": "The Knockout.js team",
+  "author": "The Knockout.js team did the hard work, Daniel Earwicker merely deleted some of it",
   "main": "build/output/knockout-latest.debug.js",
   "scripts": {
     "prepublish": "grunt",
@@ -12,21 +12,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/knockout/knockout.git"
+    "url": "https://github.com/danielearwicker/kor.git"
   },
-  "bugs": "https://github.com/knockout/knockout/issues",
+  "bugs": "https://github.com/danielearwicker/kor/issues",
   "testling": {
-    "preprocess": "build/build.sh",
-    "html": "spec/runner.html?src=build/output/knockout-latest.js&testling=true",
-    "browsers": [
-      "ie/6..latest",
-      "chrome/20..latest",
-      "firefox/3..latest",
-      "safari/5.0.5..latest",
-      "opera/11.0..latest",
-      "iphone/6..latest",
-      "ipad/6..latest"
-    ]
+    "preprocess": "build/build.sh"
   },
   "licenses": [
     { "type": "MIT", "url": "http://www.opensource.org/licenses/mit-license.php" }
