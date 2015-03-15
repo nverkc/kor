@@ -1,29 +1,3 @@
-// Wrap ko.pureComputed to allow us to check if something was created by it
-var pureComputedId = "__execute_isPureComputed__";
-var originalPureComputed = ko.pureComputed.bind(ko);
-ko.pureComputed = function(evaluatorFunctionOrOptions, evaluatorFunctionTarget) {
-    var pc = originalPureComputed(evaluatorFunctionOrOptions, evaluatorFunctionTarget);
-    pc[pureComputedId] = true;
-    return pc;
-};
-ko.isPureComputed = function(obs) {
-    return !!(obs && obs[pureComputedId]);
-}
-
-// Fix throttle so it returns pureComputed
-ko.extenders.throttle = function(target, timeout) {
-    target['throttleEvaluation'] = timeout;
-    var writeTimeoutInstance = null;
-    return ko.pureComputed({
-        'read': target,
-        'write': function(value) {
-            clearTimeout(writeTimeoutInstance);
-            writeTimeoutInstance = setTimeout(function() {
-                target(value);
-            }, timeout);
-        }
-    });
-};
 
 function ignore() {}
 
@@ -80,13 +54,13 @@ ko.execute = function(pureComputed, evaluator, thisObj) {
 // If no errorValue is specified, initialValue is used instead. If no
 // initialValue is specified, undefined is used instead.
 ko.unpromise = function(evaluator, options) {
-    var latest = ko.observable(options && options.initialValue),
+    var latest = ko.observable(options && options['initialValue']),
         waitingOn = 0,
         result = ko.pureComputed(latest),
-        errorValue = options && (options.errorValue || options.initialValue)
+        errorValue = options && (options['errorValue'] || options['initialValue'])
 
     ko.execute(result, function() {
-        var p = evaluator.call(options && options.thisArg);
+        var p = evaluator.call(options && options['.thisArg']);
         var w = ++waitingOn;
         if (p.then) {
             p.then(function(v) {
@@ -107,4 +81,3 @@ ko.unpromise = function(evaluator, options) {
 
 ko.exportSymbol('execute', ko.execute);
 ko.exportSymbol('unpromise', ko.unpromise);
-ko.exportSymbol('isPureComputed', ko.isPureComputed);

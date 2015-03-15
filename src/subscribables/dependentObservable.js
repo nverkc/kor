@@ -373,7 +373,7 @@ ko.exportSymbol('dependentObservable', ko.dependentObservable);
 ko.exportSymbol('computed', ko.dependentObservable); // Make "ko.computed" an alias for "ko.dependentObservable"
 ko.exportSymbol('isComputed', ko.isComputed);
 
-ko.pureComputed = function (evaluatorFunctionOrOptions, evaluatorFunctionTarget) {
+var internalPureComputed = function (evaluatorFunctionOrOptions, evaluatorFunctionTarget) {
     if (typeof evaluatorFunctionOrOptions === 'function') {
         return ko.computed(evaluatorFunctionOrOptions, evaluatorFunctionTarget, {'pure':true});
     } else {
@@ -382,4 +382,18 @@ ko.pureComputed = function (evaluatorFunctionOrOptions, evaluatorFunctionTarget)
         return ko.computed(evaluatorFunctionOrOptions, evaluatorFunctionTarget);
     }
 }
+
+// Wrap ko.pureComputed to allow us to check if something was created by it
+var pureComputedId = "__execute_isPureComputed__";
+
+ko.pureComputed = function(evaluatorFunctionOrOptions, evaluatorFunctionTarget) {
+    var pc = internalPureComputed(evaluatorFunctionOrOptions, evaluatorFunctionTarget);
+    pc[pureComputedId] = true;
+    return pc;
+};
+ko.isPureComputed = function(obs) {
+    return !!(obs && obs[pureComputedId]);
+}
+
 ko.exportSymbol('pureComputed', ko.pureComputed);
+ko.exportSymbol('isPureComputed', ko.isPureComputed);
