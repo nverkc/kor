@@ -11,5 +11,6 @@ knockoutDebugCallback([
     'src/subscribables/observableArray.changeTracking.js',
     'src/subscribables/dependentObservable.js',
     'src/subscribables/mappingHelpers.js',
-    'src/binding/editDetection/compareArrays.js'
+    'src/binding/editDetection/compareArrays.js',
+    'src/knockout.clear.js'
 ]);

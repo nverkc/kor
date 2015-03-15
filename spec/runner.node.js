@@ -25,7 +25,7 @@ if (process.argv.length > 2 && process.argv[2] == '--source') {
     };
     require('../build/fragments/source-references');
 } else {
-    global.ko = require('../build/output/knockout-latest.js');
+    global.ko = require('../build/output/knockout-latest.debug.js');
 }
 
 // reference behaviors that should work out of browser
@@ -40,6 +40,7 @@ require('./observableArrayChangeTrackingBehaviors');
 require('./observableBehaviors');
 require('./subscribableBehaviors');
 require('./utilsBehaviors');
+require('./clearExtensions');
 
 // get reference to jasmine runtime
 var env = jasmine.jasmine.getEnv();
