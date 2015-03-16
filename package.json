@@ -2,7 +2,7 @@
   "name": "kor",
   "description": "A tiny subset of Knockout for reactive programming",
   "homepage": "http://danielearwicker.github.io/kor/",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "author": "The Knockout.js team did the hard work, Daniel Earwicker merely deleted some of it",
   "main": "build/output/knockout-latest.debug.js",
