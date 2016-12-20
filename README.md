@@ -1,5 +1,5 @@
 
-**UPDATE 2016-12-20 ** - you should probably check out [MobX](https://github.com/mobxjs/mobx)!
+**UPDATE 2016-12-20** - you should probably check out [MobX](https://github.com/mobxjs/mobx)!
 
 **kor** is a JavaScript library supporting reactive programming. It is actually
 just a tiny subset of the excellent **Knockout** library with all the stuff to
